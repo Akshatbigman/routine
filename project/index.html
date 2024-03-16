@@ -1,16 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../src/output.css" rel="stylesheet">
-</head>
-<body class="h-screen w-screen bg-gray-bg flex flex-col justify-center content-center">
-    <header class="h-2/6 flex justify-center">
-        <input type="text" class="p-2 mx-10 h-10 w-2/6 rounded-xl focus:outline-transparent focus:outline-0">
-        <div class="p-4 h-10 w-10 bg-green-500 cursor-pointer rounded-xl"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../src/output.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="h-screen w-screen bg-gray-bg flex flex-col text-white">
+    <header class="h-3/6 flex flex-col justify-center items-center">
+      <div class="text-9xl h-3/6">TO DO LIST</div>
+      <div class="text-lg h-3-6">By Darlan Pacheco</div>
     </header>
-    <main class="h-4/6 flex flex-col">
+    <main class="h-3/6 flex flex-col items-center justify-center">
+      <div
+        onclick="htmlChange()"
+        class="p-6 mb-36 bg-green-500 hover:bg-green-300 hover:cursor-pointer rounded-xl"
+      >
+        Get started
+      </div>
     </main>
-</body>
+
+    <script>
+      function htmlChange() {
+        window.location = "./todo.html";
+      }
+    </script>
+  </body>
 </html>
