@@ -3,18 +3,29 @@ let button = document.querySelector("#button");
 let main = document.querySelector("#todos");
 
 let template = document.createElement("div");
+template.setAttribute("id", "todo-item");
 template.setAttribute(
   "class",
-  "p-3 my-3 hover:cursor-pointer bg-light-gray-bg hover:bg-active-gray-bg rounded-xl"
+  "p-2 my-4 hover:cursor-pointer bg-light-gray-bg hover:bg-active-gray-bg rounded-xl flex justify-between items-center"
 );
 
-let deleteButton = document.createElement("div");
+let content = document.createElement("div");
 let checkedButton = document.createElement("div");
+checkedButton.setAttribute("class", "w-8 h-8 bg-gray-bg rounded-lg");
+template.appendChild(content);
+template.appendChild(checkedButton);
 
 button.addEventListener("click", () => {
   if (input.value != "") {
-    let templateCopy = template.cloneNode(false);
-    templateCopy.innerHTML = input.value;
+    let templateCopy = template.cloneNode(true);
     main.appendChild(templateCopy);
+
+    templateCopy.children[0].innerHTML = input.value;
+
+    templateCopy.addEventListener("click", (event) => {
+      if (event.target.id === "todo-item") {
+        event.target.remove();
+      }
+    });
   }
 });
