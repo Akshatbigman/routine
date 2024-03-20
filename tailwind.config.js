@@ -8,6 +8,9 @@ module.exports = {
         "light-gray-bg": "#353535",
         "active-gray-bg": "#454545",
       },
+      fontFamily: {
+        quicksand: ["Quicksand"],
+      },
     },
   },
   plugins: [],
