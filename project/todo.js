@@ -6,20 +6,23 @@ let template = document.createElement("div");
 template.setAttribute("id", "todo-item");
 template.setAttribute(
   "class",
-  "p-2 my-4 hover:cursor-pointer bg-light-gray-bg hover:bg-active-gray-bg rounded-xl flex justify-between items-center"
+  "p-1 my-4 hover:cursor-pointer bg-light-gray-bg hover:bg-active-gray-bg rounded-xl flex justify-between items-center overflow-hidden"
 );
+
 let checkedButton = document.createElement("input");
 checkedButton.setAttribute(
   "class",
-  "w-8 h-8 appearance-none bg-white checked:bg-green-500 rounded-lg"
+  "w-10 h-10 appearance-none bg-white checked:bg-green-500 hover:cursor-pointer rounded-lg"
 );
 checkedButton.setAttribute("type", "checkbox");
-let content = document.createElement("div");
+
+let content = document.createElement("span");
+content.setAttribute("class", "px-4 pointer-events-none overflow-hidden w-3/4");
 
 template.appendChild(content);
 template.appendChild(checkedButton);
 
-button.addEventListener("click", () => {
+let taskCreator = () => {
   if (input.value != "") {
     let templateCopy = template.cloneNode(true);
     main.appendChild(templateCopy);
@@ -32,4 +35,13 @@ button.addEventListener("click", () => {
       }
     });
   }
-});
+};
+
+button.addEventListener("click", taskCreator) ||
+  input.addEventListener("keydown", function (event) {
+    // Verifica se a tecla pressionada é Enter (código 13)
+    if (event.key === "Enter") {
+      // Chama a função que você deseja executar aqui
+      taskCreator();
+    }
+  });
