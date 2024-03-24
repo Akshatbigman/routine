@@ -34,6 +34,8 @@ let taskCreator = () => {
         event.target.remove();
       }
     });
+
+    input.value = "";
   }
 };
 
