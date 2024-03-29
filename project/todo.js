@@ -1,6 +1,8 @@
 const input = document.querySelector("input");
 const button = document.querySelector("#button");
 const main = document.querySelector("#todos");
+let mainContent = main.querySelectorAll("#todo-item");
+let checkboxes = [...main.querySelectorAll('input[type="checkbox"]')];
 
 const template = document.createElement("div");
 template.setAttribute("id", "todo-item");
@@ -24,6 +26,9 @@ template.appendChild(checkedButton);
 
 const eventTodos = () => {
   mainContent = main.querySelectorAll("#todo-item");
+  checkboxes = [...main.querySelectorAll('input[type="checkbox"]')];
+  let str = "";
+
   mainContent.forEach((node) => {
     node.addEventListener("click", (event) => {
       if (event.target.id === "todo-item") {
@@ -32,13 +37,17 @@ const eventTodos = () => {
     });
   });
 
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked === true) {
+      str = str + "true,";
+    } else if (checkbox.checked === false) {
+      str = str + ",";
+    }
+  });
+
+  localStorage.setItem("checkboxes", str);
   localStorage.setItem("main-content", main.innerHTML);
 };
-
-window.addEventListener("load", () => {
-  main.innerHTML = localStorage.getItem("main-content");
-  eventTodos();
-});
 
 const taskCreator = () => {
   if (input.value != "") {
@@ -46,8 +55,6 @@ const taskCreator = () => {
     main.appendChild(templateCopy);
 
     templateCopy.children[0].innerHTML = input.value;
-
-    eventTodos();
 
     input.value = "";
   }
@@ -59,5 +66,16 @@ button.addEventListener("click", taskCreator) ||
       taskCreator();
     }
   });
+
+window.addEventListener("load", () => {
+  main.innerHTML = localStorage.getItem("main-content");
+  checkboxes = [...main.querySelectorAll('input[type="checkbox"]')];
+
+  checkboxes.forEach((checkbox, i) => {
+    checkbox.checked = localStorage.getItem("checkboxes").split(",")[i];
+  });
+
+  eventTodos();
+});
 
 window.addEventListener("beforeunload", eventTodos);
