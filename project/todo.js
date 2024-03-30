@@ -24,7 +24,7 @@ content.setAttribute("class", "px-4 pointer-events-none overflow-hidden w-3/4");
 template.appendChild(content);
 template.appendChild(checkedButton);
 
-const eventTodos = () => {
+const unloadFunction = () => {
   mainContent = main.querySelectorAll("#todo-item");
   checkboxes = [...main.querySelectorAll('input[type="checkbox"]')];
   let str = "";
@@ -38,11 +38,7 @@ const eventTodos = () => {
   });
 
   checkboxes.forEach((checkbox) => {
-    if (checkbox.checked === true) {
-      str = str + "true,";
-    } else if (checkbox.checked === false) {
-      str = str + ",";
-    }
+    checkbox.checked ? (str = str + "true,") : (str = str + ",");
   });
 
   localStorage.setItem("checkboxes", str);
@@ -64,7 +60,7 @@ button.addEventListener("click", taskCreator) ||
   input.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       taskCreator();
-      eventTodos();
+      unloadFunction();
     }
   });
 
@@ -76,7 +72,7 @@ window.addEventListener("load", () => {
     checkbox.checked = localStorage.getItem("checkboxes").split(",")[i];
   });
 
-  eventTodos();
+  unloadFunction();
 });
 
-window.addEventListener("beforeunload", eventTodos);
+window.addEventListener("beforeunload", unloadFunction);
