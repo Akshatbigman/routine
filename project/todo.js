@@ -64,6 +64,7 @@ button.addEventListener("click", taskCreator) ||
   input.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       taskCreator();
+      eventTodos();
     }
   });
 
