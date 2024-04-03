@@ -1,7 +1,5 @@
 let checkboxes2 = [...main.querySelectorAll('input[type="checkbox"]')];
 
-console.log("oi");
-
 let date = new Date();
 const day = date.getDate();
 const month = "0" + (date.getMonth() + 1);
@@ -16,7 +14,6 @@ const dailyReset = () => {
   date = day + "/" + month;
 
   localStorage.setItem("date", date);
-  console.log(day + "/" + month);
 };
 
 const uncheckInputs = () => {
@@ -27,11 +24,11 @@ const uncheckInputs = () => {
       checkboxes2 = [...main.querySelectorAll('input[type="checkbox"]')];
 
       checkboxes2.forEach((checkbox) => {
-        console.log(checkbox.checked);
         checkbox.checked = false;
       });
     }
   }
 };
 
-setInterval(dailyReset, 5000);
+window.addEventListener("load", dailyReset);
+setInterval(dailyReset, 3000);

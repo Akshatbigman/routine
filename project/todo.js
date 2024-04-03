@@ -76,3 +76,4 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("beforeunload", unloadFunction);
+setInterval(unloadFunction, 3000);
